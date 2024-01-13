@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <div class="card z-index-0">
+                <div class="card-header text-center pt-4">
+                    <div class="container bg-danger">
+                        <h5 class="text-light text-center">@ViewBag.sameUserError</h5>
+                    </div>
+                    <h5>Yeni Tedarikçi Ekle</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Add", "PersonelSupplier", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+                            <label>TEDARİKÇİ ADI</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="supplier_NAME">
+                        </div>
+                        <div class="mb-3">
+                            <label>AÇIKLAMA</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="supplier_DESCRIPTION">
+                        </div>
+                        <div class="mb-3">
+                            <label>TELEFON NUMARASI</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="supplier_TELNO">
+                        </div>
+                        <div class="mb-3">
+                            <label>ADRESİ</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="supplier_ADDRESS">
+                            <div class="mb-3">
+                                <label>PERSONEL ADRESİ</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_ADRES">
+                            </div>
+                            <div class="mb-3">
+                                <label>TEMİN EDİLEN ÜRÜN</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="supplier_PRODUCTNAME">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn bg-gradient-success w-100 my-4 mb-2">Kaydı Tamamla</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

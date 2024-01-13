@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="df01c416d8994da880739f0eec95f1a9" Name="Diagram1" ZoomLevel="106">
+        <EntityTypeShape EntityType="carkModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="carkModel.TBL_Companies" Width="1.875" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="carkModel.TBL_Personel" Width="1.5" PointX="5.125" PointY="0.75" />
+        <AssociationConnector Association="carkModel.FK__TBL_Perso__compa__48CFD27E" />
+        <EntityTypeShape EntityType="carkModel.TBL_Money" Width="1.5" PointX="2.75" PointY="4.875" />
+        <AssociationConnector Association="carkModel.FK__TBL_Money__compa__4BAC3F29" />
+        <EntityTypeShape EntityType="carkModel.TBL_Customers" Width="1.5" PointX="7.25" PointY="3.875" />
+        <EntityTypeShape EntityType="carkModel.TBL_Suppliers" Width="1.5" PointX="7.25" PointY="0.75" />
+        <AssociationConnector Association="carkModel.FK__TBL_Custo__compa__5165187F" />
+        <AssociationConnector Association="carkModel.FK__TBL_Suppl__compa__5441852A" />
+        <EntityTypeShape EntityType="carkModel.TBL_Stock" Width="1.5" PointX="5" PointY="4.625" />
+        <AssociationConnector Association="carkModel.FK__TBL_Stock__compa__59FA5E80" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

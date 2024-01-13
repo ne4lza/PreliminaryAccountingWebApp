@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "GiderList";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "GelirList";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+@using onMuhasebeApp.Models
+@model List<TBL_Money>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-bold text-light">GİDER İŞLEMLERİ</h1>
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+
+                    <h6>Gider Tablosu</h6>
+                    <a href="/PersonelMoney/GelirList" class="btn bg-gradient-success">Sadece Gelirleri Görüntüle</a>
+                    <a href="/PersonelMoney/GiderList" class="btn  bg-gradient-danger">Sadece Giderleri Görüntüle</a>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Başlık</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Açıklamna</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tür</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">İşlem Gerçekleştirilen Şirket</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Para Birimi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tarih</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tutar</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderByDescending(x => x.money_DATE))
+                                {
+                                    if (Convert.ToUInt32(Session["company_ID"]) == item.company_ID)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">@item.money_TITLE</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">@item.money_DESCRIPTION</p>
+                                            </td>
+                                            @if (@item.money_TYPE == "Gelir")
+                                            {
+                                                <td class="align-middle text-center text-sm mr-3">
+                                                    <i class="ni ni-money-coins text-success text-sm opacity-10"></i>
+                                                    <span class="text-secondary text-xs text-bold">@item.money_TYPE</span>
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td class="align-middle text-center text-sm mr-3">
+                                                    <i class="ni ni-money-coins text-danger text-sm opacity-10"></i>
+                                                    <span class="text-secondary text-xs text-bold">@item.money_TYPE</span>
+                                                </td>
+                                            }
+
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.money_COMPANY</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.money_CURRENCY</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.money_DATE</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.money_AMOUNT</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <a href="/PersonelMoney/Update/@item.money_ID" class="btn form-control bg-gradient-success">Güncelle</a>
+                                            </td>
+                                            <td class="align-middle text-center ">
+                                                <a href="/PersonelMoney/Delete/@item.money_ID" class="btn form-control bg-gradient-danger" onclick="return confirm('Seçili Personeli Silmek İstediğinize Emin Misiniz?')">Sil</a>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+

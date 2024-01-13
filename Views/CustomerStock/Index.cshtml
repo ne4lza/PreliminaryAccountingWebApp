@@ -1,0 +1,84 @@
+﻿@using onMuhasebeApp.Models
+@model List<TBL_Stock>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-bold text-light">STOK İŞLEMLERİ</h1>
+
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <div class="row">
+        <a href="/Personel/Add" class="btn bg-gradient-faded-success text-light font-weight-bold">Yeni Stok Ekle</a>
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Stok Durumu Tablosu</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center justify-content-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Adı</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Modeli</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tipi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stok Adedi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Fiyatı</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Eklenme Tarihi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Departmanı</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderByDescending(x => x.stock_ADDTIME))
+                                {
+                                    if (Convert.ToUInt32(Session["company_ID"]) == item.company_ID)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">@item.stock_NAME</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">@item.stock_MODEL</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="text-secondary text-xs text-bold">@item.stock_TYPE</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.stock_PIECE</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.stock_PRICE</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.stock_ADDTIME</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <a href="/Personel/Update/@item.stock_ID" class="btn form-control bg-gradient-success">Güncelle</a>
+                                            </td>
+                                            <td class="align-middle text-center ">
+                                                <a href="/Personel/Delete/@item.stock_ID" class="btn form-control bg-gradient-danger" onclick="return confirm('Seçili Personeli Silmek İstediğinize Emin Misiniz?')">Sil</a>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

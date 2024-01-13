@@ -1,0 +1,509 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="carkModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TBL_Companies">
+          <Key>
+            <PropertyRef Name="company_ID" />
+          </Key>
+          <Property Name="company_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="company_sector" Type="nvarchar" MaxLength="50" />
+          <Property Name="company_USERN" Type="nvarchar" MaxLength="50" />
+          <Property Name="company_PASSWORD" Type="nvarchar" MaxLength="50" />
+          <Property Name="company_ActivasionKey" Type="nvarchar" MaxLength="50" />
+          <Property Name="company_Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="company_LOGO" Type="nvarchar(max)" />
+          <Property Name="company_ADDRESS" Type="nvarchar" MaxLength="100" />
+          <Property Name="company_COUNTRY" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_Customers">
+          <Key>
+            <PropertyRef Name="customer_ID" />
+          </Key>
+          <Property Name="customer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_ID" Type="int" />
+          <Property Name="customer_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="customer_DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="customer_ADDRESS" Type="nvarchar" MaxLength="100" />
+          <Property Name="customer_TELNO" Type="nvarchar" MaxLength="11" />
+        </EntityType>
+        <EntityType Name="TBL_Money">
+          <Key>
+            <PropertyRef Name="money_ID" />
+          </Key>
+          <Property Name="money_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_ID" Type="int" />
+          <Property Name="money_TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="money_DESCRIPTION" Type="nvarchar" MaxLength="100" />
+          <Property Name="money_TYPE" Type="nvarchar" MaxLength="10" />
+          <Property Name="money_COMPANY" Type="nvarchar" MaxLength="50" />
+          <Property Name="money_CURRENCY" Type="nvarchar" MaxLength="10" />
+          <Property Name="money_DATE" Type="date" />
+          <Property Name="money_AMOUNT" Type="money" />
+        </EntityType>
+        <EntityType Name="TBL_Personel">
+          <Key>
+            <PropertyRef Name="personel_ID" />
+          </Key>
+          <Property Name="personel_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_ID" Type="int" />
+          <Property Name="personel_TC" Type="nvarchar" MaxLength="11" />
+          <Property Name="personel_AD" Type="nvarchar" MaxLength="50" />
+          <Property Name="personel_SAD" Type="nvarchar" MaxLength="50" />
+          <Property Name="personel_TELNO" Type="nvarchar" MaxLength="11" />
+          <Property Name="personel_ADRES" Type="nvarchar(max)" />
+          <Property Name="personel_UNVAN" Type="nvarchar" MaxLength="50" />
+          <Property Name="personel_DEPARTMAN" Type="nvarchar" MaxLength="50" />
+          <Property Name="personel_GIRISTAR" Type="date" />
+          <Property Name="personel_MAAS" Type="int" />
+        </EntityType>
+        <EntityType Name="TBL_Stock">
+          <Key>
+            <PropertyRef Name="stock_ID" />
+          </Key>
+          <Property Name="stock_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_ID" Type="int" />
+          <Property Name="stock_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="stock_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="stock_PRICE" Type="money" />
+          <Property Name="stock_PIECE" Type="int" />
+          <Property Name="stock_ADDTIME" Type="date" />
+          <Property Name="stock_MODEL" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TBL_Suppliers">
+          <Key>
+            <PropertyRef Name="supplier_ID" />
+          </Key>
+          <Property Name="supplier_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_ID" Type="int" />
+          <Property Name="supplier_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="supplier_DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="supplier_ADDRESS" Type="nvarchar" MaxLength="50" />
+          <Property Name="supplier_TELNO" Type="nvarchar" MaxLength="11" />
+          <Property Name="supplier_PRODUCTNAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__TBL_Custo__compa__5165187F">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Customers" Type="Self.TBL_Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Customers">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Money__compa__4BAC3F29">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Money" Type="Self.TBL_Money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Money">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Perso__compa__48CFD27E">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Personel" Type="Self.TBL_Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Personel">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Stock__compa__59FA5E80">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Stock" Type="Self.TBL_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Stock">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Suppl__compa__571DF1D5">
+          <End Role="TBL_Companies" Type="Self.TBL_Companies" Multiplicity="0..1" />
+          <End Role="TBL_Suppliers" Type="Self.TBL_Suppliers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Suppliers">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="carkModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Companies" EntityType="Self.TBL_Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Customers" EntityType="Self.TBL_Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Money" EntityType="Self.TBL_Money" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Personel" EntityType="Self.TBL_Personel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Stock" EntityType="Self.TBL_Stock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TBL_Suppliers" EntityType="Self.TBL_Suppliers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__TBL_Custo__compa__5165187F" Association="Self.FK__TBL_Custo__compa__5165187F">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Customers" EntitySet="TBL_Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Money__compa__4BAC3F29" Association="Self.FK__TBL_Money__compa__4BAC3F29">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Money" EntitySet="TBL_Money" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Perso__compa__48CFD27E" Association="Self.FK__TBL_Perso__compa__48CFD27E">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Personel" EntitySet="TBL_Personel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Stock__compa__59FA5E80" Association="Self.FK__TBL_Stock__compa__59FA5E80">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Stock" EntitySet="TBL_Stock" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Suppl__compa__571DF1D5" Association="Self.FK__TBL_Suppl__compa__571DF1D5">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Suppliers" EntitySet="TBL_Suppliers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="carkModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TBL_Companies">
+          <Key>
+            <PropertyRef Name="company_ID" />
+          </Key>
+          <Property Name="company_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company_sector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company_USERN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company_PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company_ActivasionKey" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="company_Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Personel" Relationship="carkModel.FK__TBL_Perso__compa__48CFD27E" FromRole="TBL_Companies" ToRole="TBL_Personel" />
+          <NavigationProperty Name="TBL_Money" Relationship="carkModel.FK__TBL_Money__compa__4BAC3F29" FromRole="TBL_Companies" ToRole="TBL_Money" />
+          <NavigationProperty Name="TBL_Customers" Relationship="carkModel.FK__TBL_Custo__compa__5165187F" FromRole="TBL_Companies" ToRole="TBL_Customers" />
+          <NavigationProperty Name="TBL_Suppliers" Relationship="carkModel.FK__TBL_Suppl__compa__5441852A" FromRole="TBL_Companies" ToRole="TBL_Suppliers" />
+          <Property Name="company_LOGO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="company_ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="company_COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Stock" Relationship="carkModel.FK__TBL_Stock__compa__59FA5E80" FromRole="TBL_Companies" ToRole="TBL_Stock" />
+        </EntityType>
+        <EntityContainer Name="carkEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TBL_Companies" EntityType="Self.TBL_Companies" />
+          <EntitySet Name="TBL_Personel" EntityType="carkModel.TBL_Personel" />
+          <AssociationSet Name="FK__TBL_Perso__compa__48CFD27E" Association="carkModel.FK__TBL_Perso__compa__48CFD27E">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Personel" EntitySet="TBL_Personel" />
+          </AssociationSet>
+          <EntitySet Name="TBL_Money" EntityType="carkModel.TBL_Money" />
+          <AssociationSet Name="FK__TBL_Money__compa__4BAC3F29" Association="carkModel.FK__TBL_Money__compa__4BAC3F29">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Money" EntitySet="TBL_Money" />
+          </AssociationSet>
+          <EntitySet Name="TBL_Customers" EntityType="carkModel.TBL_Customers" />
+          <EntitySet Name="TBL_Suppliers" EntityType="carkModel.TBL_Suppliers" />
+          <AssociationSet Name="FK__TBL_Custo__compa__5165187F" Association="carkModel.FK__TBL_Custo__compa__5165187F">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Customers" EntitySet="TBL_Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TBL_Suppl__compa__5441852A" Association="carkModel.FK__TBL_Suppl__compa__5441852A">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Suppliers" EntitySet="TBL_Suppliers" />
+          </AssociationSet>
+          <EntitySet Name="TBL_Stock" EntityType="carkModel.TBL_Stock" />
+          <AssociationSet Name="FK__TBL_Stock__compa__59FA5E80" Association="carkModel.FK__TBL_Stock__compa__59FA5E80">
+            <End Role="TBL_Companies" EntitySet="TBL_Companies" />
+            <End Role="TBL_Stock" EntitySet="TBL_Stock" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="TBL_Personel">
+          <Key>
+            <PropertyRef Name="personel_ID" />
+          </Key>
+          <Property Name="personel_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_ID" Type="Int32" />
+          <Property Name="personel_TC" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="personel_AD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="personel_SAD" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="personel_TELNO" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="personel_ADRES" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="personel_UNVAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="personel_DEPARTMAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="personel_GIRISTAR" Type="DateTime" Precision="0" />
+          <Property Name="personel_MAAS" Type="Int32" />
+          <NavigationProperty Name="TBL_Companies" Relationship="carkModel.FK__TBL_Perso__compa__48CFD27E" FromRole="TBL_Personel" ToRole="TBL_Companies" />
+        </EntityType>
+        <Association Name="FK__TBL_Perso__compa__48CFD27E">
+          <End Type="carkModel.TBL_Companies" Role="TBL_Companies" Multiplicity="0..1" />
+          <End Type="carkModel.TBL_Personel" Role="TBL_Personel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Personel">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_Money">
+          <Key>
+            <PropertyRef Name="money_ID" />
+          </Key>
+          <Property Name="money_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_ID" Type="Int32" />
+          <Property Name="money_TITLE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="money_DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="money_TYPE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="money_COMPANY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="money_CURRENCY" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="money_DATE" Type="DateTime" Precision="0" />
+          <Property Name="money_AMOUNT" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="TBL_Companies" Relationship="carkModel.FK__TBL_Money__compa__4BAC3F29" FromRole="TBL_Money" ToRole="TBL_Companies" />
+        </EntityType>
+        <Association Name="FK__TBL_Money__compa__4BAC3F29">
+          <End Type="carkModel.TBL_Companies" Role="TBL_Companies" Multiplicity="0..1" />
+          <End Type="carkModel.TBL_Money" Role="TBL_Money" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Money">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_Customers">
+          <Key>
+            <PropertyRef Name="customer_ID" />
+          </Key>
+          <Property Name="customer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_ID" Type="Int32" />
+          <Property Name="customer_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customer_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="customer_ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="customer_TELNO" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Companies" Relationship="carkModel.FK__TBL_Custo__compa__5165187F" FromRole="TBL_Customers" ToRole="TBL_Companies" />
+        </EntityType>
+        <EntityType Name="TBL_Suppliers">
+          <Key>
+            <PropertyRef Name="supplier_ID" />
+          </Key>
+          <Property Name="supplier_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_ID" Type="Int32" />
+          <Property Name="supplier_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="supplier_DESCRIPTION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="supplier_ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="supplier_PRODUCTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Companies" Relationship="carkModel.FK__TBL_Suppl__compa__5441852A" FromRole="TBL_Suppliers" ToRole="TBL_Companies" />
+          <Property Name="supplier_TELNO" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__TBL_Custo__compa__5165187F">
+          <End Type="carkModel.TBL_Companies" Role="TBL_Companies" Multiplicity="0..1" />
+          <End Type="carkModel.TBL_Customers" Role="TBL_Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Customers">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TBL_Suppl__compa__5441852A">
+          <End Type="carkModel.TBL_Companies" Role="TBL_Companies" Multiplicity="0..1" />
+          <End Type="carkModel.TBL_Suppliers" Role="TBL_Suppliers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Suppliers">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TBL_Stock">
+          <Key>
+            <PropertyRef Name="stock_ID" />
+          </Key>
+          <Property Name="stock_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_ID" Type="Int32" />
+          <Property Name="stock_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stock_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stock_PRICE" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="stock_PIECE" Type="Int32" />
+          <Property Name="stock_ADDTIME" Type="DateTime" Precision="0" />
+          <Property Name="stock_MODEL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TBL_Companies" Relationship="carkModel.FK__TBL_Stock__compa__59FA5E80" FromRole="TBL_Stock" ToRole="TBL_Companies" />
+        </EntityType>
+        <Association Name="FK__TBL_Stock__compa__59FA5E80">
+          <End Type="carkModel.TBL_Companies" Role="TBL_Companies" Multiplicity="0..1" />
+          <End Type="carkModel.TBL_Stock" Role="TBL_Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TBL_Companies">
+              <PropertyRef Name="company_ID" />
+            </Principal>
+            <Dependent Role="TBL_Stock">
+              <PropertyRef Name="company_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="carkModelStoreContainer" CdmEntityContainer="carkEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="carkModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Companies">
+            <EntityTypeMapping TypeName="carkModel.TBL_Companies">
+              <MappingFragment StoreEntitySet="TBL_Companies">
+                <ScalarProperty Name="company_COUNTRY" ColumnName="company_COUNTRY" />
+                <ScalarProperty Name="company_ADDRESS" ColumnName="company_ADDRESS" />
+                <ScalarProperty Name="company_LOGO" ColumnName="company_LOGO" />
+                <ScalarProperty Name="company_ID" ColumnName="company_ID" />
+                <ScalarProperty Name="company_NAME" ColumnName="company_NAME" />
+                <ScalarProperty Name="company_sector" ColumnName="company_sector" />
+                <ScalarProperty Name="company_USERN" ColumnName="company_USERN" />
+                <ScalarProperty Name="company_PASSWORD" ColumnName="company_PASSWORD" />
+                <ScalarProperty Name="company_ActivasionKey" ColumnName="company_ActivasionKey" />
+                <ScalarProperty Name="company_Role" ColumnName="company_Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Personel">
+            <EntityTypeMapping TypeName="carkModel.TBL_Personel">
+              <MappingFragment StoreEntitySet="TBL_Personel">
+                <ScalarProperty Name="personel_MAAS" ColumnName="personel_MAAS" />
+                <ScalarProperty Name="personel_GIRISTAR" ColumnName="personel_GIRISTAR" />
+                <ScalarProperty Name="personel_DEPARTMAN" ColumnName="personel_DEPARTMAN" />
+                <ScalarProperty Name="personel_UNVAN" ColumnName="personel_UNVAN" />
+                <ScalarProperty Name="personel_ADRES" ColumnName="personel_ADRES" />
+                <ScalarProperty Name="personel_TELNO" ColumnName="personel_TELNO" />
+                <ScalarProperty Name="personel_SAD" ColumnName="personel_SAD" />
+                <ScalarProperty Name="personel_AD" ColumnName="personel_AD" />
+                <ScalarProperty Name="personel_TC" ColumnName="personel_TC" />
+                <ScalarProperty Name="company_ID" ColumnName="company_ID" />
+                <ScalarProperty Name="personel_ID" ColumnName="personel_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Money">
+            <EntityTypeMapping TypeName="carkModel.TBL_Money">
+              <MappingFragment StoreEntitySet="TBL_Money">
+                <ScalarProperty Name="money_AMOUNT" ColumnName="money_AMOUNT" />
+                <ScalarProperty Name="money_DATE" ColumnName="money_DATE" />
+                <ScalarProperty Name="money_CURRENCY" ColumnName="money_CURRENCY" />
+                <ScalarProperty Name="money_COMPANY" ColumnName="money_COMPANY" />
+                <ScalarProperty Name="money_TYPE" ColumnName="money_TYPE" />
+                <ScalarProperty Name="money_DESCRIPTION" ColumnName="money_DESCRIPTION" />
+                <ScalarProperty Name="money_TITLE" ColumnName="money_TITLE" />
+                <ScalarProperty Name="company_ID" ColumnName="company_ID" />
+                <ScalarProperty Name="money_ID" ColumnName="money_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Customers">
+            <EntityTypeMapping TypeName="carkModel.TBL_Customers">
+              <MappingFragment StoreEntitySet="TBL_Customers">
+                <ScalarProperty Name="customer_TELNO" ColumnName="customer_TELNO" />
+                <ScalarProperty Name="customer_ADDRESS" ColumnName="customer_ADDRESS" />
+                <ScalarProperty Name="customer_DESCRIPTION" ColumnName="customer_DESCRIPTION" />
+                <ScalarProperty Name="customer_NAME" ColumnName="customer_NAME" />
+                <ScalarProperty Name="company_ID" ColumnName="company_ID" />
+                <ScalarProperty Name="customer_ID" ColumnName="customer_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Suppliers">
+            <EntityTypeMapping TypeName="carkModel.TBL_Suppliers">
+              <MappingFragment StoreEntitySet="TBL_Suppliers">
+                <ScalarProperty Name="supplier_TELNO" ColumnName="supplier_TELNO" />
+                <ScalarProperty Name="supplier_PRODUCTNAME" ColumnName="supplier_PRODUCTNAME" />
+                <ScalarProperty Name="supplier_ADDRESS" ColumnName="supplier_ADDRESS" />
+                <ScalarProperty Name="supplier_DESCRIPTION" ColumnName="supplier_DESCRIPTION" />
+                <ScalarProperty Name="supplier_NAME" ColumnName="supplier_NAME" />
+                <ScalarProperty Name="company_ID" ColumnName="company_ID" />
+                <ScalarProperty Name="supplier_ID" ColumnName="supplier_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TBL_Stock">
+            <EntityTypeMapping TypeName="carkModel.TBL_Stock">
+              <MappingFragment StoreEntitySet="TBL_Stock">
+                <ScalarProperty Name="stock_MODEL" ColumnName="stock_MODEL" />
+                <ScalarProperty Name="stock_ADDTIME" ColumnName="stock_ADDTIME" />
+                <ScalarProperty Name="stock_PIECE" ColumnName="stock_PIECE" />
+                <ScalarProperty Name="stock_PRICE" ColumnName="stock_PRICE" />
+                <ScalarProperty Name="stock_TYPE" ColumnName="stock_TYPE" />
+                <ScalarProperty Name="stock_NAME" ColumnName="stock_NAME" />
+                <ScalarProperty Name="company_ID" ColumnName="company_ID" />
+                <ScalarProperty Name="stock_ID" ColumnName="stock_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

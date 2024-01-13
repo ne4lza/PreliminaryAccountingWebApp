@@ -1,0 +1,100 @@
+﻿@model onMuhasebeApp.Models.TBL_Companies
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+<div class="card shadow-lg mx-4 card-profile-bottom">
+    <div class="card-body p-3">
+        <div class="row gx-4">
+            <div class="col-auto">
+            </div>
+            <div class="col-auto my-auto">
+                <div class="h-100">
+                    <h5 class="mb-1">
+                        @Session["company_NAME"]
+                    </h5>
+                    <p class="mb-0 font-weight-bold text-sm">
+                        @Session["company_sector"]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("Index", "CustomerProfile", FormMethod.Post))
+{
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <div class="d-flex align-items-center">
+                            <p class="mb-0">Profili Düzenle</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-uppercase text-sm">Kullanıcı Bilgileri</p>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label>İşletme Adınız</label>
+                                    @Html.TextBoxFor(X => X.company_NAME, new { @class = "form-control" })<br />
+                                    @Html.ValidationMessageFor(x => x.company_NAME, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Faaliyet Gösterdiğiniz Sektör</label>
+                                @Html.TextBoxFor(X => X.company_sector, new { @class = "form-control" })<br />
+                                @Html.ValidationMessageFor(x => x.company_sector, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6">
+                                <label>Kullanıcı Adınız</label>
+                                @Html.TextBoxFor(X => X.company_USERN, new { @class = "form-control" })<br />
+                                @Html.ValidationMessageFor(x => x.company_USERN, null, new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-6">
+                                <label>Yeni Şifreniz</label>
+                                @Html.TextBoxFor(X => X.company_PASSWORD, new { @class = "form-control" })<br />
+                                @Html.ValidationMessageFor(x => x.company_PASSWORD, null, new { @class = "text-danger" })
+
+                                <label>Yeni Şifreniz (Tekrar)</label>
+                                @Html.TextBoxFor(X => X.company_PASSWORD, new { @class = "form-control" })<br />
+                                @Html.ValidationMessageFor(x => x.company_PASSWORD, null, new { @class = "text-danger" })
+
+                                <div class="text-center">
+                                    <button class="btn bg-gradient-success w-100 my-4 mb-2">Şifremi Güncelle</button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="horizontal dark">
+                        <p class="text-uppercase text-sm">İletişim Bilgileri</p>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Adres</label>
+                                    @Html.TextBoxFor(X => X.company_ADDRESS, new { @class = "form-control" })<br />
+                                    @Html.ValidationMessageFor(x => x.company_ADDRESS, null, new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Ülke</label>
+                                @Html.TextBoxFor(X => X.company_COUNTRY, new { @class = "form-control" })<br />
+                                @Html.ValidationMessageFor(x => x.company_COUNTRY, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn bg-gradient-success w-100 my-4 mb-2">Bilgilerimi Güncelle</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="mb-3">
+        @Html.HiddenFor(x => x.company_ID, new { @class = "form-control bg-light" })<br />
+    </div>
+}

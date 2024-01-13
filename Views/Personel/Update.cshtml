@@ -1,0 +1,75 @@
+﻿@model onMuhasebeApp.Models.TBL_Personel
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <div class="card z-index-0">
+                <div class="card-header text-center pt-4">
+                    <h5>Personel Bilgisi Güncelle</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Update", "Personel", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+                            @Html.HiddenFor(X => X.personel_ID, new { @class = "form-control bg-light" })<br />
+                        </div>
+                        <div class="mb-3">
+                            <label>TCKN</label>
+                            @Html.TextBoxFor(X => X.personel_TC, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_TC, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>ADI</label>
+                            @Html.TextBoxFor(x => x.personel_AD, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_AD, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>SOYADI</label>
+                            @Html.TextBoxFor(x => x.personel_SAD, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_SAD, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>TELEFON NUMARASI</label>
+                            @Html.TextBoxFor(x => x.personel_TELNO, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_TELNO, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>ADRESİ</label>
+                            @Html.TextBoxFor(x => x.personel_ADRES, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_ADRES, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>UNVANI</label>
+                            @Html.TextBoxFor(x => x.personel_UNVAN, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_UNVAN, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>DEPARTMANI</label>
+                            @Html.TextBoxFor(x => x.personel_DEPARTMAN, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_DEPARTMAN, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>İŞE GİRİŞ TARİHİ</label>
+                            @Html.TextBoxFor(x => x.personel_GIRISTAR, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_GIRISTAR, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>MAAŞI</label>
+                            @Html.TextBoxFor(x => x.personel_MAAS, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.personel_MAAS, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="text-center">
+                            <button class="btn bg-gradient-success w-100 my-4 mb-2">Güncelle</button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,85 @@
+﻿@using onMuhasebeApp.Models
+@model List<TBL_Suppliers>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4 text-bold text-light">TEDARİKÇİ İŞLEMLERİ</h1>
+
+    </div>
+</div>
+<div class="container-fluid py-4">
+    <div class="row">
+        <a href="/PersonelSupplier/Add" class="btn bg-gradient-faded-success text-light font-weight-bold">Yeni Tedarikçi Ekle</a>
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+
+                    <h6>Tedarikçiler Tablosu</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tedarikçi Adı</th>
+                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Açıklaması</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Adresi</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telefon Numarası</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tedarik Edilen Ürün</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
+                                    <th class="text-secondary opacity-7"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderByDescending(x => x.supplier_ID))
+                                {
+                                    if (Convert.ToUInt32(Session["company_ID"]) == item.company_ID)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">@item.supplier_NAME</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">@item.supplier_DESCRIPTION</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="text-secondary text-xs text-bold">@item.supplier_ADDRESS</span>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                                <span class="text-secondary text-xs text-bold">@item.supplier_TELNO</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span class="text-secondary text-xs font-weight-bold">@item.supplier_PRODUCTNAME</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <a href="/PersonelSupplier/Update/@item.supplier_ID" class="btn form-control bg-gradient-success">Güncelle</a>
+                                            </td>
+                                            <td class="align-middle text-center ">
+                                                <a href="/PersonelSupplier/Delete/@item.supplier_ID" class="btn form-control bg-gradient-danger" onclick="return confirm('Seçili Tadarikçiyi Silmek İstediğinize Emin Misiniz?')">Sil</a>
+                                            </td>
+
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+

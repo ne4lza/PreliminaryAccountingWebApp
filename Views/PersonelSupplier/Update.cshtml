@@ -1,0 +1,55 @@
+﻿@model onMuhasebeApp.Models.TBL_Suppliers
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <div class="card z-index-0">
+                <div class="card-header text-center pt-4">
+                    <h5>Tedarikçi Bilgisi Güncelle</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Update", "PersonelSupplier", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+                            @Html.HiddenFor(X => X.supplier_ID, new { @class = "form-control bg-light" })<br />
+                        </div>
+                        <div class="mb-3">
+                            <label>TEDARİKÇİ ADI</label>
+                            @Html.TextBoxFor(X => X.supplier_NAME, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.supplier_NAME, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>AÇIKLAMA</label>
+                            @Html.TextBoxFor(x => x.supplier_DESCRIPTION, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.supplier_DESCRIPTION, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>ADRES</label>
+                            @Html.TextBoxFor(x => x.supplier_ADDRESS, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.supplier_ADDRESS, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>TELEFON NUMARASI</label>
+                            @Html.TextBoxFor(x => x.supplier_TELNO, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.supplier_TELNO, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>TEDARİK EDİLEN ÜRÜN</label>
+                            @Html.TextBoxFor(x => x.supplier_PRODUCTNAME, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.supplier_PRODUCTNAME, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="text-center">
+                            <button class="btn bg-gradient-success w-100 my-4 mb-2">Güncelle</button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

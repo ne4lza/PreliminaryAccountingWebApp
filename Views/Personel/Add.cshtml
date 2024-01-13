@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <div class="card z-index-0">
+                <div class="card-header text-center pt-4">
+                    <div class="container bg-danger">
+                        <h5 class="text-light text-center">@ViewBag.sameUserError</h5>
+                    </div>
+                    <h5>Yeni Personel Ekle</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Add", "Personel", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+                            <label>PERSONEL TCKN</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_TC">
+                        </div>
+                        <div class="mb-3">
+                            <label>PERSONEL ADI</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_AD">
+                        </div>
+                        <div class="mb-3">
+                            <label>PERSONEL SOYADI</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_SAD">
+                        </div>
+                        <div class="mb-3">
+                            <label>PERSONEL TELEFON NUMARASI</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_TELNO">
+                            <div class="mb-3">
+                                <label>PERSONEL ADRESİ</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_ADRES">
+                            </div>
+                            <div class="mb-3">
+                                <label>PERSONEL UNVANI</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_UNVAN">
+                            </div>
+                            <div class="mb-3">
+                                <label>PERSONEL DEPARTMANI</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_DEPARTMAN">
+                            </div>
+                            <div class="mb-3">
+                                <label>PERSONEL İŞE GİRİŞ TARİHİ</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_GIRISTAR">
+                            </div>
+                            <div class="mb-3">
+                                <label>PERSONEL MAAŞI</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="personel_MAAS">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn bg-gradient-success w-100 my-4 mb-2">Kaydı Tamamla</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

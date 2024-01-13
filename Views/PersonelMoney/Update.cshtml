@@ -1,0 +1,65 @@
+﻿@model onMuhasebeApp.Models.TBL_Money
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <div class="card z-index-0">
+                <div class="card-header text-center pt-4">
+                    <h5>Personel Bilgisi Güncelle</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Update", "PersonelMoney", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+                            @Html.HiddenFor(x=> x.money_ID, new { @class = "form-control bg-light" })<br />
+                        </div>
+                        <div class="mb-3">
+                            <label>ADI</label>
+                            @Html.TextBoxFor(X => X.money_TITLE, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.money_TITLE, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>AÇIKLAMA</label>
+                            @Html.TextBoxFor(x => x.money_DESCRIPTION, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.money_DESCRIPTION, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>İŞLEM TÜRÜ(Gelir,Gider)</label>
+                            @Html.TextBoxFor(x => x.money_TYPE, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.money_TYPE, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>İŞLEM YAPILAN İŞLETME ADI</label>
+                            @Html.TextBoxFor(x => x.money_COMPANY, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.money_COMPANY, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>PARA BİRİMİ(TL,USD,EUR...)</label>
+                            @Html.TextBoxFor(x => x.money_CURRENCY, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.money_CURRENCY, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>İŞLEM TARİHİ</label>
+                            @Html.TextBoxFor(x => x.money_DATE, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.money_DATE, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="mb-3">
+                            <label>TUTAR</label>
+                            @Html.TextBoxFor(x => x.money_AMOUNT, new { @class = "form-control bg-light" })<br />
+                            @Html.ValidationMessageFor(x => x.money_AMOUNT, null, new { @class = "text-danger" })
+                        </div>
+                        <div class="text-center">
+                            <button class="btn bg-gradient-success w-100 my-4 mb-2">Güncelle</button>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

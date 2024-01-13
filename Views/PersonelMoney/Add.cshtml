@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_PersonelLayout.cshtml";
+}
+<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <div class="card z-index-0">
+                <div class="card-header text-center pt-4">
+                    <h5>Yeni Personel Ekle</h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Add", "PersonelMoney", FormMethod.Post))
+                    {
+                        <div class="mb-3">
+                            <label>AD</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="money_TITLE">
+                        </div>
+                        <div class="mb-3">
+                            <label>AÇIKLAMA</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="money_DESCRIPTION">
+                        </div>
+                        <div class="mb-3">
+                            <label>TÜRÜ(Gelir,Gider)</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="money_TYPE">
+                        </div>
+                        <div class="mb-3">
+                            <label>İŞLEM YAPILAN İŞLETME</label>
+                            <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="money_COMPANY">
+                            <div class="mb-3">
+                                <label>PARA BİRİMİ(TL,USD,EUR...)</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="money_CURRENCY">
+                            </div>
+                            <div class="mb-3">
+                                <label>İŞLEM TARİHİ</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="money_DATE">
+                            </div>
+                            <div class="mb-3">
+                                <label>TUTAR</label>
+                                <input type="text" class="form-control" placeholder="Name" aria-label="Name" name="money_AMOUNT">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn bg-gradient-success w-100 my-4 mb-2">Kaydı Tamamla</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
